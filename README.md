@@ -89,6 +89,4 @@ Synthetic construction project dataset with 1,000 rows.
 - Add predictive delay scoring
 - Connect dashboard directly to the SQL database
 
-## Interview Pitch
-“I built a construction analytics project using SQL and Power BI to analyze delays, cost overruns, and productivity. The main insight was that weather, location, and a few high-risk projects drive most of the execution problems.”
 
