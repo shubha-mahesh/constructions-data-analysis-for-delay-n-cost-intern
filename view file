@@ -1,0 +1,18 @@
+CREATE VIEW project_clean AS
+SELECT
+    Project_ID,
+    Project_Type,
+    Location,
+    Start_Date,
+    End_Date,
+    Planned_Cost,
+    Actual_Cost,
+    Cost_Overrun,
+    Planned_Duration,
+    Actual_Duration,
+    Schedule_Deviation,
+    Labor_Hours,
+    Weather_Condition,
+    Completion_Percentage,
+    Risk_Level
+FROM bim_ai_civil_engineering_dataset;
