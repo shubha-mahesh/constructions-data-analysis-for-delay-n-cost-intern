@@ -1,0 +1,19 @@
+-- KPI Dashboard Summary (Single Query)
+SELECT
+    COUNT(*) AS total_projects,
+
+    -- Delayed projects
+    SUM(CASE WHEN Schedule_Deviation > 0 THEN 1 ELSE 0 END) AS delayed_projects,
+
+    -- Average delay (only delayed ones)
+    ROUND(AVG(CASE WHEN Schedule_Deviation > 0 THEN Schedule_Deviation END),2) AS avg_delay_days,
+
+    -- Cost overrun %
+    ROUND(SUM(Cost_Overrun) * 100.0 / SUM(Planned_Cost),2) AS cost_overrun_percent,
+
+    -- On-time completion %
+    ROUND(
+        SUM(CASE WHEN Schedule_Deviation <= 0 THEN 1 ELSE 0 END) * 100.0 / COUNT(*),
+    2) AS on_time_percent
+
+FROM project_clean;
