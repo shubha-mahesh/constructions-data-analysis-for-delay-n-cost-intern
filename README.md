@@ -41,9 +41,6 @@ This project analyzes construction project performance using SQL and Power BI. T
 
 ---
 
-## SQL Logic
-
-KPIs were calculated using conditional aggregation:
 
 ## Advanced Insights
 
