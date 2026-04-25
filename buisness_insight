@@ -1,0 +1,129 @@
+# Construction Project Delay & Cost Overrun Analysis
+
+## Executive Summary
+The dashboard analyzes 1,000 construction projects to understand schedule performance, cost control, risk exposure, and operational efficiency. The business story is clear: delays are widespread, weather and location influence execution, and a small number of projects create a disproportionate share of cost overrun.
+
+## KPI Snapshot
+- Total Projects: 1000
+- Delayed Projects: 830
+- Average Delay: 134.04 days
+- Cost Overrun: 19.41%
+- On-Time Completion: 17.0%
+
+### Business meaning
+- 83% delayed projects shows the portfolio is heavily schedule-constrained.
+- 134 days average delay is not a minor slip; it indicates systemic execution issues.
+- 19.41% cost overrun points to weak budget control or scope instability.
+- 17% on-time completion means delivery reliability is low.
+
+## Deep Business Analysis by Visual
+
+### 1) Delay by Location
+Observed ranking:
+- Los Angeles: lowest average delay
+- Seattle
+- New York
+- Houston
+- Chicago: highest average delay
+
+Business interpretation:
+- Geography is not neutral. Some sites are consistently harder to execute.
+- Chicago and Houston appear to have the strongest schedule risk, likely due to a mix of project complexity, site coordination issues, or resource constraints.
+- Los Angeles performs better, so it can be used as a benchmark for internal best practices.
+
+Action:
+- Prioritize site-level review for Chicago and Houston.
+- Compare project planning and resource allocation against Los Angeles.
+
+### 2) Delay by Weather Condition
+Observed ranking:
+- Sunny: lowest delay
+- Snowy / Stormy / Cloudy: moderate delays
+- Rainy: highest delay
+
+Business interpretation:
+- Weather is a real operational driver, not just background noise.
+- Rainy conditions create the biggest schedule impact, which means field planning, material handling, and workforce scheduling are vulnerable to weather disruption.
+- Sunny conditions consistently support better execution.
+
+Action:
+- Add weather contingency buffers in schedule planning.
+- Improve rain-response logistics and site protection plans.
+
+### 3) Risk Level
+Business interpretation:
+- Risk level is a useful summary of project exposure across delay, cost, safety, and execution indicators.
+- High-risk projects should be treated as intervention candidates, not just dashboard labels.
+- If high-risk projects also show low completion, they should be escalated earlier.
+
+Action:
+- Track high-risk projects weekly.
+- Link risk level to project owner accountability and corrective action.
+
+### 4) Top Delayed Projects
+Business interpretation:
+- A few projects sit at the top of the delay distribution.
+- That means the issue is not uniform; it is concentrated in specific projects.
+- These are the projects most likely to need root-cause review, vendor escalation, or re-baselining.
+
+Action:
+- Create a review list for projects with the highest schedule deviation.
+- Use them as case studies for delay diagnostics.
+
+### 5) Top Cost Overrun Projects
+Observed pattern:
+- A small number of projects contribute a very large share of cost overrun.
+
+Business interpretation:
+- Cost risk is concentrated, not spread evenly.
+- This usually means either scope drift, poor estimation, change-order pressure, or execution inefficiency on large projects.
+- The biggest overruns should be prioritized because they have the highest financial impact.
+
+Action:
+- Focus cost-control effort on the top overrun projects first.
+- Review estimates, change requests, and vendor commitments for those projects.
+
+### 6) Planned vs Actual Cost Scatter
+Business interpretation:
+- Points above the reference line indicate budget overshoot.
+- The scatter shows whether large projects are systematically underestimating real cost.
+- If many high-value projects sit above the line, that suggests planning accuracy weakens at scale.
+
+Action:
+- Revisit estimation methods for large-budget projects.
+- Add cost contingency rules for higher-risk project types.
+
+### 7) Labor Hours vs Completion Percentage
+Business interpretation:
+- This visual measures productivity, not just effort.
+- Projects with high labor hours but low completion are inefficient.
+- Projects with lower labor hours and high completion are good execution benchmarks.
+
+Action:
+- Identify the most efficient projects and reuse their process patterns.
+- Review projects with low productivity for staffing or workflow issues.
+
+## SQL Layer Insights
+The SQL layer adds business depth by making the analysis reproducible and structured.
+
+Useful SQL outputs:
+- KPI summary for total projects, delayed projects, average delay, cost overrun, and on-time rate.
+- Delay by location to identify execution hotspots.
+- Weather impact to understand external disruption.
+- Top cost overrun projects for financial prioritization.
+- Productivity ranking to compare labor efficiency.
+
+Why SQL matters:
+- It turns raw data into repeatable reporting logic.
+- It supports dashboard refresh and stakeholder reporting.
+- It makes the analysis auditable and easy to explain in interviews.
+
+## Business Recommendations
+- Prioritize schedule recovery for Chicago and Houston.
+- Build weather buffers for rainy-season planning.
+- Escalate high-risk projects early.
+- Review top cost overruns separately from the rest of the portfolio.
+- Use labor productivity as a performance benchmark across sites and project types.
+
+## One-line interview summary
+“I analyzed construction projects to find where delays and cost overruns come from, and the main drivers were location, weather, and a small set of high-risk projects.”
