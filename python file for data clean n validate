@@ -1,0 +1,64 @@
+import pandas as pd
+
+# Load dataset
+df = pd.read_csv("construction_data.csv")
+
+# -------------------------------
+# BASIC CHECKS
+# -------------------------------
+print("Shape:", df.shape)
+print("\nColumns:\n", df.columns)
+print("\nMissing values:\n", df.isnull().sum())
+
+# -------------------------------
+# DATA CLEANING
+# -------------------------------
+
+# Remove duplicates
+df = df.drop_duplicates()
+
+# Convert date columns
+df["Start_Date"] = pd.to_datetime(df["Start_Date"], errors="coerce")
+df["End_Date"] = pd.to_datetime(df["End_Date"], errors="coerce")
+
+# Ensure numeric columns
+num_cols = [
+    "Planned_Cost", "Actual_Cost", "Cost_Overrun",
+    "Planned_Duration", "Actual_Duration", "Schedule_Deviation",
+    "Labor_Hours", "Completion_Percentage"
+]
+
+for col in num_cols:
+    df[col] = pd.to_numeric(df[col], errors="coerce")
+
+# -------------------------------
+# VALIDATION CHECKS
+# -------------------------------
+
+# Check negative costs
+print("\nNegative cost rows:\n", df[df["Actual_Cost"] < 0])
+
+# Check completion %
+print("\nInvalid completion %:\n", df[
+    (df["Completion_Percentage"] < 0) | 
+    (df["Completion_Percentage"] > 100)
+])
+
+# Check duration consistency
+df["calculated_duration"] = (df["End_Date"] - df["Start_Date"]).dt.days
+
+print("\nDuration mismatch:\n", df[
+    abs(df["calculated_duration"] - df["Actual_Duration"]) > 10
+])
+
+# -------------------------------
+# FINAL CLEAN DATA
+# -------------------------------
+
+# Drop helper column
+df = df.drop(columns=["calculated_duration"])
+
+# Save cleaned data
+df.to_csv("clean_construction_data.csv", index=False)
+
+print("\n✅ Data cleaned and saved successfully!")
