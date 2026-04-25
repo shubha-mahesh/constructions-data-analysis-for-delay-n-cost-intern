@@ -1,0 +1,66 @@
+-- =========================================
+-- BUSINESS INSIGHTS QUERIES
+-- =========================================
+
+-- 1. Delay by Location
+SELECT 
+    Location,
+    ROUND(AVG(Schedule_Deviation),2) AS avg_delay
+FROM project_clean
+GROUP BY Location
+ORDER BY avg_delay DESC;
+
+-- =========================================
+
+-- 2. High Risk Projects (lowest completion first)
+SELECT 
+    Project_ID,
+    Location,
+    Completion_Percentage
+FROM project_clean
+WHERE Risk_Level = 'High'
+ORDER BY Completion_Percentage ASC;
+
+-- =========================================
+
+-- 3. Top 10 Cost Overrun Projects
+SELECT 
+    Project_ID,
+    ROUND(Cost_Overrun,2) AS overrun
+FROM project_clean
+ORDER BY overrun DESC
+LIMIT 10;
+
+-- =========================================
+
+-- 4. Productivity Analysis
+SELECT 
+    Project_ID,
+    Labor_Hours,
+    Completion_Percentage,
+    ROUND(Completion_Percentage * 1.0 / Labor_Hours,4) AS productivity
+FROM project_clean
+ORDER BY productivity DESC;
+
+-- =========================================
+
+-- 5. Weather Impact on Delay
+SELECT 
+    Weather_Condition,
+    ROUND(AVG(Schedule_Deviation),2) AS avg_delay
+FROM project_clean
+GROUP BY Weather_Condition
+ORDER BY avg_delay DESC;
+
+-- =========================================
+-- INDEXING (RUN ONCE)
+-- =========================================
+
+CREATE INDEX IF NOT EXISTS idx_loc 
+ON bim_ai_civil_engineering_dataset(Location);
+
+CREATE INDEX IF NOT EXISTS idx_risk 
+ON bim_ai_civil_engineering_dataset(Risk_Level);
+
+CREATE INDEX IF NOT EXISTS idx_delay 
+ON bim_ai_civil_engineering_dataset(Schedule_Deviation);
