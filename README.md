@@ -45,4 +45,18 @@ This project analyzes construction project performance using SQL and Power BI. T
 
 KPIs were calculated using conditional aggregation:
 
-```sql
+## Advanced Insights
+
+### Weather Impact
+Projects under rainy conditions had the highest delays (~117 days), while sunny conditions had the lowest (~93 days), indicating strong environmental influence on project timelines.
+
+### Location Analysis
+Chicago and Houston showed the highest average delays, suggesting regional inefficiencies, while Los Angeles performed comparatively better.
+
+### Cost Overrun Analysis
+A small number of projects contributed to significant cost overruns (>20M), indicating the need for targeted cost control strategies.
+
+### Productivity Analysis
+Significant variation in labor productivity was observed, with some projects achieving higher completion with fewer labor hours, highlighting optimization opportunities.
+
+
